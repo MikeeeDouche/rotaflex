@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block title %}Services - RotaFlex{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="service-hero text-white text-center">
+  <div class="container py-5" data-aos="fade-zoom-in">
+    <h1 class="display-4 fw-bold text-uppercase animate-fade-slide">Our Services</h1>
+    <p class="lead text-light animate-fade-delay">Built for durability. Designed for the future.</p>
+  </div>
+</section>
+
+<!-- Services Grid -->
+<section class="container py-5">
+  <div class="text-center mb-5">
+    <h2 class="fw-bold text-primary">What We Do</h2>
+    <p class="text-muted">Comprehensive engineering and construction solutions</p>
+  </div>
+  <div class="row g-4">
+    {% set services = [
+      ('fa-road', 'Roads, Highway Pavements, Railways', 'images/services/roads.jpg'),
+      ('fa-plane-departure', 'Airport Horizontal Structures & Bridges', 'images/services/airport.jpg'),
+      ('fa-water', 'Dam, Reservoir & Tunneling', 'images/services/dam.jpg'),
+      ('fa-faucet', 'Water Supply Systems', 'images/services/watersupply.jpg'),
+      ('fa-anchor', 'Port, Harbor & Offshore Engineering', 'images/services/port.jpg'),
+      ('fa-industry', 'Buildings & Industrial Plants', 'images/services/buildings.jpg'),
+      ('fa-toilet', 'Sewerage & Sewage Treatment', 'images/services/sewage.jpg'),
+      ('fa-tint', 'Water Treatment Plant Systems', 'images/services/watertreatment.jpg'),
+      ('fa-tree', 'Parks, Playgrounds & Recreational Works', 'images/services/parks.jpg'),
+      ('fa-shield-alt', 'Waterproofing Works', 'images/services/waterproofing.jpg'),
+      ('fa-paint-roller', 'Painting & Finishing Works', 'images/services/paint.jpg')
+    ] %}
+
+{% for icon, title, img_url in services %}
+  <div class="col-12 col-sm-6 col-lg-4" data-aos="fade-up">
+    <div class="card border-0 shadow-lg h-100 rounded-4 hover-shadow transition service-card text-white"
+         style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ url_for('static', filename=img_url) }}') center / cover no-repeat;">
+      <div class="card-body text-center py-5">
+        <i class="fas {{ icon }} fa-3x text-white mb-4"></i>
+        <h5 class="card-title fw-semibold text-white">{{ title }}</h5>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+
+
+
+  </div>
+</section>
+
+<!-- AOS.js Scroll Animation Library -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+</script>
+
+<!-- Custom Styles -->
+<style>
+  .service-hero {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                url('/static/images/project11.jpg') no-repeat center center/cover;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .transition {
+    transition: all 0.3s ease;
+  }
+
+  .service-card {
+    border-left: 5px solid #007BFF;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .text-primary {
+    color: #007BFF !important;
+  }
+
+  .btn-primary {
+    background-color: #007BFF;
+    border-color: #007BFF;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004c99;
+  }
+</style>
+{% endblock %}

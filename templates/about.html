@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}About Us - RotaFlex{% endblock %}
+
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<div class="container my-5">
+
+  <!-- About Section -->
+  <section class="glass-card p-5 rounded shadow-lg" data-aos="fade-up">
+    <h2 class="mb-4 text-primary fw-bold">About RotaFlex</h2>
+    <p class="lead">
+      <strong>RotaFlex Construction Corporation</strong> is a dynamic and future-ready construction firm in the Philippines,
+      committed to delivering world-class infrastructure projects across the country. With a strong foundation in
+      engineering excellence, project management, and innovative building solutions, we pride ourselves on being a
+      trusted partner in nation-building.
+    </p>
+  </section>
+
+  <!-- Certifications -->
+  <section class="mt-5" data-aos="fade-up">
+    <h3 class="text-primary mb-4 fw-semibold">Company Certifications</h3>
+    <p>RotaFlex is proud to be recognized for excellence, safety, and quality by industry-leading organizations.</p>
+    <div class="row g-4">
+      {% for cert in [
+        {'img': 'certificates/cert1.jpg', 'title': 'ISO 9001:2015', 'desc': 'Quality Management Systems'},
+        {'img': 'certificates/cert2.jpg', 'title': 'DOLE Certified', 'desc': 'Occupational Safety & Health Standards'},
+        {'img': 'certificates/cert3.jpg', 'title': 'PCAB License', 'desc': 'Philippine Contractors Accreditation Board'}
+      ] %}
+      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="{{ loop.index * 100 }}">
+        <div class="card bg-white bg-opacity-75 border-0 shadow-sm rounded-4 h-100 hover-scale">
+          <img src="{{ url_for('static', filename=cert.img) }}" class="card-img-top rounded-top-4" alt="{{ cert.title }}">
+          <div class="card-body text-center">
+            <h5 class="card-title fw-bold">{{ cert.title }}</h5>
+            <p class="text-muted small mb-0">{{ cert.desc }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="mt-5" data-aos="fade-up">
+    <h3 class="text-primary mb-3 fw-semibold">Our Satellite Offices Across the Philippines</h3>
+    <div class="glass-card p-3 rounded shadow-lg">
+      <div id="map" style="height: 400px; border-radius: 10px;"></div>
+    </div>
+  </section>
+
+</div>
+
+<!-- AOS & Leaflet Scripts -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+<script>
+  AOS.init();
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const map = L.map('map').setView([12.8797, 121.7740], 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data © OpenStreetMap contributors'
+    }).addTo(map);
+
+    const offices = [
+      { name: 'Manila Office', coords: [14.5995, 120.9842] },
+      { name: 'Cebu Office', coords: [10.3157, 123.8854] },
+      { name: 'Davao Office', coords: [7.1907, 125.4553] },
+      { name: 'Iloilo Office', coords: [10.7202, 122.5621] }
+    ];
+
+    offices.forEach(office => {
+      L.marker(office.coords).addTo(map)
+        .bindPopup(`<strong>${office.name}</strong>`);
+    });
+  });
+</script>
+
+<style>
+  .glass-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #000;
+  }
+  .hover-scale {
+    transition: transform 0.3s ease;
+  }
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+</style>
+{% endblock %}

@@ -1,0 +1,315 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - RotaFlex{% endblock %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+{% block content %}
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Full-screen Hero Section with Dark Overlay */
+  .hero-section {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('{{ url_for("static", filename="images/project10.jpg") }}') center/cover no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .hero-section h1 span {
+    color: #0734ff;
+  }
+
+  .hero-section p {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .hero-section .btn {
+    margin-top: 2rem;
+    padding: 1rem 2.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: 50px;
+  }
+
+  /* Carousel */
+  .carousel {
+    margin-bottom: 4rem;
+  }
+
+  .carousel-item {
+    position: relative;
+  }
+
+  .carousel-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 0.5rem;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .carousel-caption p {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #fff;
+  }
+
+  .carousel-caption footer {
+    color: #f8f9fa;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  /* Mission & Vision Section */
+  .mission-vision-section {
+    background-color: #fff;
+    padding: 5rem 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .mission-vision-section h2 {
+    color: #007bff;
+    font-weight: 600;
+  }
+
+  .mission-vision-section p {
+    font-size: 1.25rem;
+    color: #555;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('{{ url_for("static", filename="images/cta-bg.jpg") }}') center/cover no-repeat;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cta-section .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+  }
+
+  .cta-section .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta-section h3 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .cta-section p {
+    font-size: 1.25rem;
+    color: #f8f9fa;
+    margin-bottom: 2rem;
+  }
+
+  .cta-section .btn {
+    background-color: #f39c12;
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 50px;
+  }
+
+  /* Section Titles */
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #003049;
+    margin-bottom: 3rem;
+  }
+
+  @media (max-width: 768px) {
+    .hero-section h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero-section p {
+      font-size: 1.2rem;
+    }
+
+    .cta-section h3 {
+      font-size: 2rem;
+    }
+
+    .cta-section p {
+      font-size: 1rem;
+    }
+  }
+
+</style>
+
+<!-- Hero Section -->
+<section class="hero-section" data-aos="fade-up">
+  <div>
+    <h1 data-aos="fade-down" data-aos-delay="200">Welcome to <span>RotaFlex Constructions </span></h1>
+    <p data-aos="fade-up" data-aos-delay="400">Your trusted partner in modern construction.</p>
+    <a href="/services" class="btn btn-primary rounded-pill shadow" data-aos="zoom-in" data-aos-delay="600">Explore Our Services</a>
+  </div>
+</section>
+
+<!-- Carousel & Why Choose Rotaflex Section -->
+<section class="my-5" data-aos="fade-up" data-aos-duration="1000">
+  <div class="container">
+    <div class="row g-4 align-items-stretch">
+
+      <!-- Carousel Left -->
+      <div class="col-md-6 d-flex" data-aos="fade-right" data-aos-delay="100">
+        <div class="w-100 rounded-4 overflow-hidden shadow-lg border border-light-subtle d-flex flex-column" style="height: 100%;">
+          <div id="projectCarousel" class="carousel slide h-100" data-bs-ride="carousel">
+            <div class="carousel-inner h-100">
+
+              <!-- Slide 1 -->
+              <div class="carousel-item active h-150">
+                <div class="carousel-img-wrapper position-relative h-100">
+                  <img src="{{ url_for('static', filename='images/project1.jpg') }}" class="d-block w-100 h-100 object-fit-cover" alt="Project 1">
+                  <div class="carousel-caption d-none d-md-block p-4" style="background: rgba(30, 30, 30, 0.5); border-radius: 12px;">
+                    <p class="mb-3 fst-italic fs-5 fw-semibold">“ROTAFLEX exceeded our expectations in every way.”</p>
+                    <footer class="blockquote-footer text-white mt-1">Engr. Santos, <cite title="Source Title">PhilCon Builders</cite></footer>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="carousel-item h-100">
+                <div class="carousel-img-wrapper position-relative h-100">
+                  <img src="{{ url_for('static', filename='images/project2.jpg') }}" class="d-block w-100 h-100 object-fit-cover" alt="Project 2">
+                  <div class="carousel-caption d-none d-md-block p-4" style="background: rgba(30, 30, 30, 0.5); border-radius: 12px;">
+                    <p class="mb-3 fst-italic fs-5 fw-semibold">“Efficient, professional, and great value for money.”</p>
+                    <footer class="blockquote-footer text-white mt-1">Arch. dela Cruz, <cite>Axis Developments</cite></footer>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Add more slides as needed -->
+
+            </div>
+
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- You can paste the right column (Why Choose Rotaflex) here -->
+
+
+      <!-- Why Choose Rotaflex Right -->
+      <div class="col-md-6 d-flex flex-column justify-content-between" data-aos="fade-left" data-aos-delay="200">
+        <h3 class="text-primary mb-4">Why Choose <span class="text-dark">ROTAFLEX</span></h3>
+
+        <div class="mb-4 p-4 bg-light rounded shadow-sm">
+          <h5 class="fw-bold mb-2 text-dark"><i class="bi bi-award-fill text-primary me-2"></i>Trusted Expertise</h5>
+          <p class="mb-0">With years of industry experience, we deliver high-quality work backed by technical know-how and professionalism.</p>
+        </div>
+
+        <div class="mb-4 p-4 bg-light rounded shadow-sm">
+          <h5 class="fw-bold mb-2 text-dark"><i class="bi bi-speedometer2 text-primary me-2"></i>On-Time Delivery</h5>
+          <p class="mb-0">We value your time—our team is committed to completing projects on schedule without compromising quality.</p>
+        </div>
+
+        <div class="p-4 bg-light rounded shadow-sm">
+          <h5 class="fw-bold mb-2 text-dark"><i class="bi bi-tools text-primary me-2"></i>Innovative Solutions</h5>
+          <p class="mb-0">We combine modern technology with smart construction strategies to provide cost-effective, reliable solutions.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Mission & Vision Section -->
+<section class="mb-5" data-aos="fade-right">
+  <div class="container py-5">
+    <div class="row g-4 align-items-stretch justify-content-center">
+
+      <!-- Mission -->
+      <div class="col-md-6">
+        <div class="p-4 p-md-5 bg-white bg-opacity-75 rounded-4 shadow-lg h-100 border border-light-subtle" style="backdrop-filter: blur(10px);">
+          <h2 class="mb-3 fw-bold text-dark">Our Mission</h2>
+          <p class="text-muted fs-5">
+            To deliver high-quality, cost-effective construction services on schedule by employing and supporting motivated, flexible, and focused teams.
+          </p>
+        </div>
+      </div>
+
+     
+</section>
+<!-- Mission & Vision Section -->
+<section class="mb-5" data-aos="fade-right">
+  <div class="container py-5">
+    <div class="row g-4 align-items-stretch justify-content-center">
+
+ <!-- Vision -->
+      <div class="col-md-6">
+        <div class="p-4 p-md-5 bg-white bg-opacity-75 rounded-4 shadow-lg h-100 border border-light-subtle" style="backdrop-filter: blur(10px);">
+          <h2 class="mb-3 fw-bold text-dark">Our Vision</h2>
+          <p class="text-muted fs-5">
+            To be the builder of choice for value-minded clients and high-performing employees.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Call to Action Section -->
+<section class="cta-section text-center text-white py-5 position-relative" data-aos="zoom-in">
+  <div class="overlay position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-75"></div>
+  <div class="container position-relative z-1">
+    <h3 class="display-5 fw-semibold">Ready to Build Something Great?</h3>
+    <p class="lead mb-4">Let ROTAFLEX bring your vision to life with precision and professionalism.</p>
+    <a href="/contact" class="btn btn-warning btn-lg rounded-pill px-5 shadow">Get a Free Quote</a>
+  </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({
+    once: true, // Only animate once
+    duration: 1000, // Animation duration in ms
+  });
+</script>
+{% endblock %}

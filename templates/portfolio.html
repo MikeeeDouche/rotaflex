@@ -1,0 +1,429 @@
+{% extends 'base.html' %}
+
+{% block title %}Our Projects - RotaFlex{% endblock %}
+
+{% block content %}
+<!-- AOS + Fonts -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f3f4f7;
+  }
+
+  .hero-section {
+  position: relative;
+  background: url('/static/images/banner.jpg') center center/cover no-repeat;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 1.5rem;
+}
+
+.hero-content h1 {
+  font-size: 3.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.hero-content p {
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: #f0f0f0;
+  margin-bottom: 2rem;
+}
+
+.cta-button {
+  padding: 0.7rem 1.8rem;
+  background: linear-gradient(to right, #ff9900, #ff6f00);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+}
+
+.cta-button:hover {
+  background: linear-gradient(to right, #ff8c00, #ff5600);
+  transform: translateY(-2px);
+}
+
+  .filter-btn-group {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  overflow-x: auto;
+  padding: 1rem 0;
+  gap: 0.5rem;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.filter-btn-group::-webkit-scrollbar {
+  display: none;
+}
+
+
+  .filter-btn {
+    margin: 0.3rem;
+    border-radius: 50px;
+    padding: 0.6rem 1.4rem;
+    border: none;
+    background: linear-gradient(to right, #ff9900, #ff6f00);
+    color: white;
+    font-weight: 500;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .project-card {
+    border-radius: 16px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .project-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .project-content {
+    padding: 1.4rem;
+    text-align: center;
+  }
+
+  .project-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #003049;
+    margin-bottom: 0.2rem;
+  }
+
+  .project-category {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .project-description {
+    font-size: 0.95rem;
+    color: #555;
+    min-height: 60px;
+  }
+
+  .btn-view {
+    background: #ff6f00;
+    color: #fff;
+    padding: 0.4rem 1.1rem;
+    border-radius: 30px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+
+  .btn-view:hover {
+    background: #ff8c00;
+  }
+  /* Zoom-in with scale and subtle flash glow */
+.project-card:hover {
+  transform: scale(1.05);
+  z-index: 10;
+  box-shadow: 0 15px 35px rgba(255, 111, 0, 0.3); /* glow effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+/* Add transition for smooth zoom-in/out */
+.project-item {
+  transition: transform 0.3s ease;
+}
+
+/* Optional: to ensure the card hovers above others */
+.project-item:hover {
+  z-index: 10;
+}
+.load-more-button {
+  padding: 0.7rem 2rem;
+  background: linear-gradient(to right, #ff9900, #ff6f00);
+  color: #fff;
+  font-size: 1.05rem;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(255, 111, 0, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.load-more-button:hover {
+  background: linear-gradient(to right, #ff8c00, #ff5600);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(255, 111, 0, 0.4);
+}
+.slick-slide {
+  display: inline-block;
+  padding: 0 10px;
+}
+.slick-prev:before, .slick-next:before {
+  color: #ff6f00;
+}
+.filter-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.filter-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.tab.active::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  background: orange;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.project-item {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none;
+}
+
+.project-item.show {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: all;
+  display: block;  /* Ensure the item is displayed when it's shown */
+}
+
+.project-item.hide {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+  display: none;  /* Hide the item completely from the layout */
+}
+
+
+
+
+/* Adding an additional highlight effect when selected tab is clicked */
+.highlight-flash {
+  box-shadow: 0 0 20px 8px rgba(255, 111, 0, 0.5);
+  transition: box-shadow 0.3s ease;
+}
+
+.hero-section {
+  /* existing styles... */
+  margin-bottom: 50px; /* Add spacing below hero */
+}
+
+</style>
+
+<!-- Hero Section -->
+<div class="hero-section">
+  <div class="hero-content" data-aos="zoom-in">
+    <h1>OUR WORKS</h1>
+    <p>Explore the structures we've brought to life – solid, smart, and built to last.</p>
+    <div class="filter-tabs slick-slider">
+      <div><span class="tab active" data-filter="all">All</span></div>
+        {% for icon, category in services %}
+          <div><span class="tab" data-filter="{{ category|replace(' ', '-') }}">{{ category }}</span></div>
+        {% endfor %}
+      </div>
+  </div>
+</div>
+
+
+
+ <!-- Projects Grid -->
+<div class="container mt-5">
+  <div class="row" id="projectGrid">
+  {% for project in projects %}
+  <div class="col-lg-4 col-md-6 mb-4 project-item {{ project.service|replace(' ', '-') }} {% if loop.index > 12 %}d-none extra-project{% endif %}" data-aos="zoom-in" data-aos-delay="{{ loop.index * 100 }}">
+    <div class="project-card">
+      <img src="{{ url_for('static', filename='images/' ~ project.image) }}" alt="{{ project.title }}" loading="lazy">
+      <div class="project-content">
+        <div class="project-title">{{ project.title }}</div>
+        <div class="project-category">{{ project.service }}</div>
+        <p class="project-description">{{ project.description }}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Load More Button -->
+<div class="text-center my-4">
+  <button id="loadMoreBtn" class="cta-button">Load More</button>
+</div>
+
+<!-- AOS Animation JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  // Initialize AOS
+  AOS.init({
+  duration: 1000,  // Adjust the duration for smoother animations
+  once: true,
+  offset: 100,  // Start animation when it's 100px into the viewport
+});
+const items = document.querySelectorAll('.project-item');
+
+function filterItems(criteria) {
+  items.forEach(item => {
+    if (item.matches(criteria)) {
+      item.classList.add('show');
+      item.classList.remove('hide');
+    } else {
+      item.classList.add('hide');
+      item.classList.remove('show');
+    }
+  });
+}
+
+  // Filtering Projects with Animation
+const filterButtons = document.querySelectorAll('.tab');
+const projectItems = document.querySelectorAll('.project-item');
+
+filterButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Activate clicked tab
+    filterButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const filter = btn.getAttribute('data-filter');
+
+    // Add highlight effect on the selected tab
+    btn.classList.add('highlight-flash');
+    setTimeout(() => {
+      btn.classList.remove('highlight-flash');
+    }, 300); // Flash duration
+
+    // Show and hide project items with animation
+    projectItems.forEach(item => {
+      const matchesFilter = filter === 'all' || item.classList.contains(filter);
+
+      // Animate the hiding/showing of items
+      if (matchesFilter) {
+        item.classList.remove('hide');
+        item.classList.add('show');
+      } else {
+        item.classList.remove('show');
+        item.classList.add('hide');
+      }
+    });
+  });
+});
+
+  // Load More Functionality
+  const loadMoreBtn = document.getElementById('loadMoreBtn');
+  const hiddenProjects = document.querySelectorAll('.project-item.extra-project');
+
+  loadMoreBtn?.addEventListener('click', () => {
+    let shown = 0;
+    hiddenProjects.forEach(item => {
+      if (item.classList.contains('d-none') && shown < 6) {
+        item.classList.remove('d-none');
+        item.classList.add('visible');
+        shown++;
+      }
+    });
+
+    const remaining = Array.from(hiddenProjects).filter(item => item.classList.contains('d-none')).length;
+    if (remaining === 0) {
+      loadMoreBtn.style.display = 'none';
+    }
+  });
+
+  // Slick Carousel for Filter Tabs
+  $(document).ready(function() {
+    $('.filter-slider').slick({
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 2500,
+      arrows: true,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1
+          }
+        }
+      ]
+    });
+  });
+</script>
+
+
+<style>
+  .highlight-flash {
+    box-shadow: 0 0 20px 8px rgba(255, 111, 0, 0.5);
+    transition: box-shadow 0.3s ease;
+  }
+</style>
+{% endblock %}
