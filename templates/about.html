@@ -20,26 +20,30 @@
 
   <!-- Certifications -->
   <section class="mt-5" data-aos="fade-up">
-    <h3 class="text-primary mb-4 fw-semibold">Company Certifications</h3>
-    <p>RotaFlex is proud to be recognized for excellence, safety, and quality by industry-leading organizations.</p>
-    <div class="row g-4">
-      {% for cert in [
-        {'img': 'certificates/cert1.jpg', 'title': 'ISO 9001:2015', 'desc': 'Quality Management Systems'},
-        {'img': 'certificates/cert2.jpg', 'title': 'DOLE Certified', 'desc': 'Occupational Safety & Health Standards'},
-        {'img': 'certificates/cert3.jpg', 'title': 'PCAB License', 'desc': 'Philippine Contractors Accreditation Board'}
-      ] %}
-      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="{{ loop.index * 100 }}">
-        <div class="card bg-white bg-opacity-75 border-0 shadow-sm rounded-4 h-100 hover-scale">
-          <img src="{{ url_for('static', filename=cert.img) }}" class="card-img-top rounded-top-4" alt="{{ cert.title }}">
-          <div class="card-body text-center">
-            <h5 class="card-title fw-bold">{{ cert.title }}</h5>
-            <p class="text-muted small mb-0">{{ cert.desc }}</p>
-          </div>
+  <h3 class="text-primary mb-4 fw-semibold">Company Certifications</h3>
+  <p>RotaFlex is proud to be recognized for excellence, safety, and quality by industry-leading organizations.</p>
+  
+  <!-- Horizontal scroll wrapper -->
+  <div class="d-flex flex-nowrap overflow-auto gap-4">
+    {% for cert in [
+      {'img': 'certificates/cert1.jpg', 'title': 'ISO 9001:2015', 'desc': 'Quality Management Systems'},
+      {'img': 'certificates/cert2.jpg', 'title': 'DOLE Certified', 'desc': 'Occupational Safety & Health Standards'},
+      {'img': 'certificates/cert3.jpg', 'title': 'PCAB License', 'desc': 'Philippine Contractors Accreditation Board'},
+      {'img': 'certificates/cert100.jpg', 'title': 'PhilGEPS Registered', 'desc': 'Officially registered in the Philippine Government Electronic Procurement System'}
+    ] %}
+    <div class="flex-shrink-0" style="width: 280px;" data-aos="zoom-in" data-aos-delay="{{ loop.index * 100 }}">
+      <div class="card bg-white bg-opacity-75 border-0 shadow-sm rounded-4 h-100 hover-scale">
+        <img src="{{ url_for('static', filename=cert.img) }}" class="card-img-top rounded-top-4" alt="{{ cert.title }}">
+        <div class="card-body text-center">
+          <h5 class="card-title fw-bold">{{ cert.title }}</h5>
+          <p class="text-muted small mb-0">{{ cert.desc }}</p>
         </div>
       </div>
-      {% endfor %}
     </div>
-  </section>
+    {% endfor %}
+  </div>
+</section>
+
 
   <!-- Map Section -->
   <section class="mt-5" data-aos="fade-up">
