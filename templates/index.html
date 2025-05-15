@@ -170,13 +170,24 @@
       font-size: 1rem;
     }
   }
+  .equipment-showcase .card-img-top {
+  height: 220px;
+  object-fit: cover;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  }
+
+  .equipment-showcase .card-title {
+  font-weight: 600;
+  }
+
 
 </style>
 
 <!-- Hero Section -->
 <section class="hero-section" data-aos="fade-up">
   <div>
-    <h1 data-aos="fade-down" data-aos-delay="200">Welcome to <span>RotaFlex Constructions </span></h1>
+    <h1 data-aos="fade-down" data-aos-delay="200">Welcome to <span>RotaFlex Constructions and Development Corp. </span></h1>
     <p data-aos="fade-up" data-aos-delay="400">Your trusted partner in modern construction.</p>
     <a href="/services" class="btn btn-primary rounded-pill shadow" data-aos="zoom-in" data-aos-delay="600">Explore Our Services</a>
   </div>
@@ -293,6 +304,53 @@
 
     </div>
   </div>
+</section>
+
+<!-- Equipment Showcase Section -->
+<section class="equipment-showcase py-5 bg-light" data-aos="fade-up">
+  <div class="container">
+    <h2 class="section-title text-center mb-5">Our Equipment Showcase</h2>
+    <div class="row g-4">
+      <!-- Equipment Card 1 -->
+      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+        <div class="card h-100 shadow border-0">
+          <img src="{{ url_for('static', filename='images/equipment1.jpg') }}" class="card-img-top" alt="Excavator">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Excavator</h5>
+            <p class="card-text">High-performance excavators built for tough terrain and deep foundation digging.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Equipment Card 2 -->
+      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class="card h-100 shadow border-0">
+          <img src="{{ url_for('static', filename='images/equipment2.jpg') }}" class="card-img-top" alt="Bulldozer">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Bulldozer</h5>
+            <p class="card-text">Reliable bulldozers for clearing, grading, and moving massive loads with ease.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Equipment Card 3 -->
+      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+        <div class="card h-100 shadow border-0">
+          <img src="{{ url_for('static', filename='images/equipment3.jpg') }}" class="card-img-top" alt="Concrete Mixer">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Tower Crane</h5>
+            <p class="card-text">Efficient mixers ensuring consistency and speed for all concrete projects.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt-5">
+  <a href="{{ url_for('equipment') }}" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm">
+    <i class="fas fa-cogs me-2"></i> View All Equipment
+  </a>
+</div>
+
 </section>
 
 

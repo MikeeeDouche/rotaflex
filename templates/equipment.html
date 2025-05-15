@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block title %}Equipment - RotaFlex{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="service-hero text-white text-center">
+  <div class="container py-5" data-aos="fade-zoom-in">
+    <h1 class="display-4 fw-bold text-uppercase animate-fade-slide">Our Equipments</h1>
+    <p class="lead text-light animate-fade-delay">Top-tier tools for reliable results.</p>
+  </div>
+</section>
+
+<!-- Equipment Grid -->
+<section class="container py-5">
+  <div class="text-center mb-5">
+    <h2 class="fw-bold text-primary">Fleet & Machinery</h2>
+    <p class="text-muted">Modern equipment to meet the toughest construction demands</p>
+  </div>
+  <div class="row g-4">
+    {% set equipment_list = [
+        ('fa-truck-pickup', 'Trucks', 'images/equipment/dumptruck.jpg', 71),
+        ('fa-truck-monster', 'Excavators', 'images/equipment/equipment1.jpg', 35),
+        ('fa-truck-loading', 'Bulldozers', 'images/equipment/equipment2.jpg', 4),
+        ('fa-compass-drafting', 'Skid Loader', 'images/equipment/skidloader.jpg', 6),
+        ('fa-tools', 'Roller/Vibratory Compactor', 'images/equipment/roller.jpg', 9),
+        ('fa-road', 'Wheel loader/Payloader', 'images/equipment/wheel.jpg', 3),
+        ('fa-water', 'Cement mixers', 'images/equipment/cement.jpg', 15),
+        ('fa-truck-moving', 'Tower Crane', 'images/equipment/crane.jpg', 9),
+        ('fa-truck-moving', 'Mobile Crane', 'images/equipment/equipment3.jpg', 1),
+        ('fa-truck-moving', 'Crawler Crane', 'images/equipment/crawcrane.jpg', 1),
+        ('fa-truck-moving', 'Pump Crete (40 Meters)', 'images/equipment/pump.jpg', 1),
+        ('fa-truck-moving', 'Mobile Batching Plant', 'images/equipment/mob.jpg', 1),
+        ('fa-truck-moving', 'Service Vehicles', 'images/equipment/service.jpg', 40),
+        ('fa-snowplow', 'Formworks System', 'images/equipment/form.jpg', 3)
+    ] %}
+
+
+    {% for icon, name, image, units in equipment_list %}
+<div class="col-12 col-sm-6 col-lg-4" data-aos="fade-up">
+  <div class="card border-0 shadow-lg h-100 rounded-4 hover-shadow transition service-card text-white"
+       style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ url_for('static', filename=image) }}') center / cover no-repeat;">
+    <div class="card-body text-center py-5">
+      <h5 class="card-title fw-semibold text-white">{{ name }}</h5>
+      <p class="text-light mt-2">Number of Units: <strong>{{ units }}</strong></p>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+  </div>
+</section>
+
+<!-- AOS Scroll Animation -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+</script>
+
+<!-- Custom Styles -->
+<style>
+  .service-hero {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                url('/static/images/equipment-hero.jpg') no-repeat center center/cover;
+    height: 500px;;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .transition {
+    transition: all 0.3s ease;
+  }
+
+  .service-card {
+    border-left: 5px solid #007BFF;
+  }
+
+  .card-title {
+    font-size: 2.4rem;
+  }
+
+  .text-primary {
+    color: #007BFF !important;
+  }
+
+  .btn-primary {
+    background-color: #007BFF;
+    border-color: #007BFF;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004c99;
+  }
+</style>
+{% endblock %}

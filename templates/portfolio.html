@@ -206,7 +206,7 @@
   padding: 0 10px;
 }
 .slick-prev:before, .slick-next:before {
-  color: #ff6f00;
+  color: #0026ffcc;
 }
 .filter-tabs {
   display: flex;
@@ -284,9 +284,9 @@
     <h1>OUR WORKS</h1>
     <p>Explore the structures we've brought to life – solid, smart, and built to last.</p>
     <div class="filter-tabs slick-slider">
-      <div><span class="tab active" data-filter="all">All</span></div>
+      <div><span class="tab active" data-filter="all"></span></div>
         {% for icon, category in services %}
-          <div><span class="tab" data-filter="{{ category|replace(' ', '-') }}">{{ category }}</span></div>
+          <div></div>
         {% endfor %}
       </div>
   </div>
@@ -303,8 +303,6 @@
       <img src="{{ url_for('static', filename='images/' ~ project.image) }}" alt="{{ project.title }}" loading="lazy">
       <div class="project-content">
         <div class="project-title">{{ project.title }}</div>
-        <div class="project-category">{{ project.service }}</div>
-        <p class="project-description">{{ project.description }}</p>
       </div>
     </div>
   </div>
