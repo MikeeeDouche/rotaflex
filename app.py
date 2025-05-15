@@ -26,7 +26,6 @@ def contact():
     if form.validate_on_submit():
         # Extract form data
         name = form.name.data
-        email = form.email.data
         phone = form.phone.data
         project_type = form.project_type.data
         message = form.message.data
@@ -37,7 +36,9 @@ def contact():
         return redirect(url_for('contact'))  # Prevent duplicate submission
     return render_template('contact.html', form=form)
 
-
+@app.route("/equipment")
+def equipment():
+    return render_template("equipment.html")
 
 @app.route("/portfolio")
 def portfolio():
